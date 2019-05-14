@@ -1,0 +1,118 @@
+<app-adminheader></app-adminheader>
+<div class="admin_dashboard_container r_r_dashboard">
+  <div class="content_text">
+   <!-- <h2>Lorem Ipsum</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco</p>-->
+    <h2>Welcome</h2>
+    <p>We’d like to welcome you to NexGen Testing - a national sales organization that specialize with Molecular PCR Testing which has better results sooner! NexGen takes pride in training you, the representative, to be ready to support any physician and to feel confident in what you do.</p>
+  </div>
+</div>
+
+<div class="dashboard_block2 r_r_dashboard_innerblock">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="reps_inner_block1" >
+        <h3>Recent Reps Added</h3>
+
+        <table class="table ">
+          <thead>
+
+
+          <tr>
+            <th data scope="col">Date Added</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Initial Training</th>
+            <th scope="col"> Additional Training</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <!--<tr>
+            <td data-title="Date Added" scope="row">01/15/2019</td>
+            <td data-title="User ID">001</td>
+            <td data-title="Name">Jane Doe</td>
+            <td data-title="Initial Training">100%</td>
+            <td data-title="Additional Training">100%</td>
+          </tr>-->
+          <tr *ngFor="let item of repdetails_under_this_regional | slice:0:5;">
+            <td data-title="Date Added" scope="row">{{_commonservice.showdateforreplegal(item.created_at)}}</td>
+            <td data-title="User ID">{{item.unique_id}}</td>
+            <td data-title="Name">{{item.firstname}} {{item.lastname}}</td>
+            <td data-title="Initial Training">
+              <span *ngIf="item.newhirecatsum==0">0</span>
+              <span *ngIf="item.newhirecatsum>0">{{((item.newhirecatsum/totalnewhiretraining).toFixed(2)*100).toFixed(2)}}</span>
+              %</td>
+            <td data-title="Additional Training">
+              <span *ngIf="item.reactsum>0">{{((item.reactsum/totalreptraining).toFixed(2)*100).toFixed(2)}}</span>
+              <span *ngIf="item.reactsum==0">0</span>
+              %</td>
+           <!-- <td data-title="Initial Training">100%</td>
+            <td data-title="Additional Training">100%</td>-->
+          </tr>
+         <!-- <tr>
+            <td data-title="Date Added" scope="row">01/15/2019</td>
+            <td data-title="User ID">001</td>
+            <td data-title="Name">Jane Doe</td>
+            <td data-title="Initial Training">100%</td>
+            <td data-title="Additional Training">100%</td>
+          </tr>
+
+          <tr>
+            <td data-title="Date Added" scope="row">01/15/2019</td>
+            <td data-title="User ID">001</td>
+            <td data-title="Name">Jane Doe</td>
+            <td data-title="Initial Training">100%</td>
+            <td data-title="Additional Training">100%</td>
+          </tr>
+
+          <tr>
+            <td data-title="Date Added" scope="row">01/15/2019</td>
+            <td data-title="User ID">001</td>
+            <td data-title="Name">Jane Doe</td>
+            <td data-title="Initial Training">100%</td>
+            <td data-title="Additional Training">100%</td>
+          </tr>-->
+          </tbody>
+        </table>
+
+        <button [routerLink]="['/rep']" >View all reps</button>
+      </div>
+    </div>
+    <div class="col-md-4 ">
+      <div class="reps_inner_block2" >
+        <h3>Appointments</h3>
+
+        <table class="table" >
+          <thead>
+
+
+          <tr>
+          <!--  <th data scope="col">Date Added</th>-->
+            <th scope="col">User ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date Set</th>
+            <th scope="col"> Time</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let item of googleevents | slice:0:5;">
+          <!--  <td data-title="Date Added" scope="row">{{item.startdate}}</td>-->
+            <td data-title="User ID">{{item.userdata.unique_id}}</td>
+            <td data-title="Name">{{item.userdata.firstname}} {{item.userdata.lastname}}</td>
+            <td data-title="Date Set">{{_commonservice.showdateforreplegal(item.startdate)}}</td>
+            <td data-title="Time">{{_commonservice.showtime(item.start_time)}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <button [routerLink]="['/appointmentlist']">View Calendar</button>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<app-footer></app-footer>
